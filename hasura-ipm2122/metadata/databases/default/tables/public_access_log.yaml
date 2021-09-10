@@ -1,0 +1,10 @@
+table:
+  name: access_log
+  schema: public
+object_relationships:
+- name: facility
+  using:
+    foreign_key_constraint_on: facility_id
+- name: user
+  using:
+    foreign_key_constraint_on: user_id

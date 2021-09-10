@@ -1,0 +1,31 @@
+version: '3.6'
+
+services:
+    database:
+        container_name: db_ipm2122
+        image: postgres
+        restart: always
+        environment:
+          - POSTGRES_USER=ipm2122_user
+          - POSTGRES_PASSWORD=secret
+          - POSTGRES_DB=ipm2122_db
+        volumes:
+          - ./db/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+        ports:
+          - 5438:5432
+
+    graphql-engine:
+        image: hasura/graphql-engine:v2.0.3.cli-migrations-v3
+        ports:
+            - "8080:8080"
+        depends_on:
+            - "database"
+        restart: always
+        volumes:
+            - ./hasura-ipm2122/metadata/:/hasura-metadata
+        environment:
+            HASURA_GRAPHQL_DATABASE_URL: postgres://ipm2122_user:secret@database:5432/ipm2122_db
+            HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+            HASURA_GRAPHQL_DEV_MODE: "true"
+            HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+            HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey

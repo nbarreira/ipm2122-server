@@ -1,0 +1,11 @@
+table:
+  name: facilities
+  schema: public
+array_relationships:
+- name: access_logs
+  using:
+    foreign_key_constraint_on:
+      column: facility_id
+      table:
+        name: access_log
+        schema: public

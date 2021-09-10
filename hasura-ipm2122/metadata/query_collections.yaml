@@ -1,0 +1,173 @@
+- name: allowed-queries
+  definition:
+    queries:
+    - name: facility
+      query: |-
+        query facilities($id: Int) {
+          facilities(where: {id: {_eq: $id}}) {
+            id
+            max_capacity
+            name
+            percentage_capacity_allowed
+            address
+          }
+        }
+    - name: facilities
+      query: |-
+        query facilities($offset: Int, $limit: Int) {
+          facilities(offset: $offset, limit: $limit){
+            id
+            max_capacity
+            name
+            address
+            percentage_capacity_allowed
+          }
+        }
+    - name: insert_access
+      query: |-
+        mutation add_log($user_id: String = "", $facility_id: Int = 10, $temperature: String = "", $type: String = "", $timestamp: timestamptz = "") {
+          insert_access_log_one(object: {user_id: $user_id, facility_id: $facility_id, temperature: $temperature, type: $type, timestamp: $timestamp}) {
+            facility_id
+            user_id
+            timestamp
+            type
+          }
+        }
+    - name: access_log_by_user_by_dates
+      query: |-
+        query access_log_by_user($id: String, $startdate: timestamptz!, $enddate:timestamptz!,$offset: Int, $limit: Int) {
+          access_log(offset: $offset, limit: $limit, where: {user_id: {_eq: $id}, _and: {timestamp: {_gte: $startdate, _lte:$enddate}}}) {
+            temperature
+            timestamp
+            type
+            facility {
+              name
+              address
+              id
+            }
+          }
+        }
+    - name: access_log_by_user
+      query: |-
+        query access_log_by_user($id: String, $offset: Int, $limit: Int) {
+          access_log(offset: $offset, limit: $limit, where: {user_id: {_eq: $id}}) {
+            temperature
+            timestamp
+            type
+            facility {
+              name
+              address
+              id
+            }
+          }
+        }
+    - name: users
+      query: |-
+        query users ($offset: Int, $limit: Int) {
+          users(offset: $offset, limit: $limit) {
+            uuid
+            username
+            name
+            surname
+            email
+            phone
+            is_vaccinated
+          }
+        }
+    - name: user
+      query: |-
+        query users($id: String) {
+          users(where: {uuid: {_eq: $id}}) {
+            uuid
+            username
+            name
+            surname
+            email
+            phone
+            is_vaccinated
+          }
+        }
+    - name: access_log
+      query: |-
+        query access_log($offset: Int, $limit: Int) {
+          access_log(order_by: {timestamp: desc}, offset: $offset, limit: $limit) {
+            user {
+              name
+              surname
+              uuid
+              is_vaccinated
+              phone
+              email
+            }
+            temperature
+            timestamp
+            type
+            facility_id
+          }
+        }
+    - name: access_log_by_facility
+      query: |-
+        query access_log_by_facility($id: Int, $offset: Int, $limit: Int) {
+          access_log(order_by: {timestamp: desc}, offset: $offset, limit: $limit, where: {facility_id: {_eq: $id}}) {
+            user {
+              name
+              surname
+              uuid
+              is_vaccinated
+              phone
+              email
+            }
+            temperature
+            timestamp
+            type
+          }
+        }
+    - name: insert_user
+      query: |-
+        mutation insert_user ($username: String = "", $password: String = "", $name: String = "", $email: String = "", $phone: String = "", $surname: String = "", $is_vaccinated: Boolean = false) {
+          insert_users_one(object: {username: $username, password: $password, name: $name, surname: $surname, email: $email, phone: $phone, is_vaccinated: $is_vaccinated}) {
+            uuid
+          }
+        }
+    - name: login
+      query: |-
+        query users($username: String, $password: String) {
+          users(where: {username: {_eq: $username}, _and: {password: {_eq: $password}}}) {
+            name
+            surname
+            email
+            phone
+            is_vaccinated
+            uuid
+          }
+        }
+    - name: access_log_by_dates
+      query: |-
+        query access_log_by_dates($id: Int, $startdate: timestamptz!, $enddate:timestamptz!, $offset: Int, $limit: Int) {
+          access_log(offset: $offset, limit: $limit, where: {facility_id: {_eq: $id}, _and: {timestamp: {_gte: $startdate, _lte:$enddate}}}) {
+            temperature
+            timestamp
+            type
+            user {
+              name
+              surname
+              uuid
+              is_vaccinated
+              phone
+              email
+            }
+          }
+        }
+    - name: user_by_name
+      query: |-
+        query users($name: String, $surname: String) {
+          users(where: {name: {_eq: $name}, _and: {surname: {_eq: $surname}}}) {
+            uuid
+            username
+            name
+            surname
+            email
+            phone
+            is_vaccinated
+          }
+        }

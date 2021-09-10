@@ -1,0 +1,119 @@
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: insert_access
+  url: access_log
+  methods:
+  - POST
+  name: insert_access
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: access_log
+  url: access_log
+  methods:
+  - GET
+  name: access_log
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: facilities
+  url: facilities
+  methods:
+  - GET
+  name: facilities
+  comment: Get data of all facilities
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: facility
+  url: facilities/:id
+  methods:
+  - GET
+  name: facility
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: access_log_by_facility
+  url: facility_access_log/:id
+  methods:
+  - GET
+  name: access_log_by_facility
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: access_log_by_dates
+  url: facility_access_log/:id/daterange
+  methods:
+  - GET
+  name: access_log_by_dates
+  comment: startdate and enddate should be send as a json dictionary in the request's
+    body
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: login
+  url: login
+  methods:
+  - POST
+  name: login
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: insert_user
+  url: user
+  methods:
+  - POST
+  name: insert_user
+  comment: variables
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: user_by_name
+  url: user
+  methods:
+  - GET
+  name: user_by_name
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: access_log_by_user
+  url: user_access_log/:id
+  methods:
+  - GET
+  name: access_log_by_user
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: access_log_by_user_by_dates
+  url: user_access_log/:id/daterange
+  methods:
+  - GET
+  name: access_log_by_user_by_dates
+  comment: startdate and enddate should be send as a json dictionary in the request's
+    body
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: users
+  url: users
+  methods:
+  - GET
+  name: users
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: user
+  url: users/:id
+  methods:
+  - GET
+  name: user
+  comment: null
