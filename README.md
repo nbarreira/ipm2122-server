@@ -28,7 +28,11 @@ Deberá salir por pantalla información sobre la versión actualmente instalada.
 >
 > donde *myuser* es tu nombre de usuario. 
 >
-> Una vez realizada esta operación, cierra el terminal y abre uno nuevo para que la inclusión de tu usuario en el nuevo grupo se haga efectiva
+> Una vez realizada esta operación, cierra el terminal y abre uno nuevo para que la inclusión de tu usuario en el nuevo grupo se haga efectiva. Comprueba que tu usuario pertenece al grupo docker con el comando 
+> ```
+> groups
+> ```
+> Si el grupo docker no aparece en la lista, prueba a salir de la sesión y volver a entrar o a reiniciar el ordenador.
 >
 
 - [ ] Descarga y descomprime los ficheros de configuración del servidor [usuario normal]
