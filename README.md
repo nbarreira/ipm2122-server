@@ -35,11 +35,11 @@ Deberá salir por pantalla información sobre la versión actualmente instalada.
 > Si el grupo docker no aparece en la lista, prueba a salir de la sesión y volver a entrar o a reiniciar el ordenador.
 >
 
-- [ ] Descarga y descomprime los ficheros de configuración del servidor [usuario normal]
+- [ ] Descarga los ficheros de configuración del servidor [usuario normal]
 
 ```
-tar xvfz server-docker.tgz 
-cd server-docker
+git clone https://github.com/nbarreira/ipm2122-server.git
+cd ipm2122-server
 ```
 
 - [ ] Arranca la base de datos (usuario normal)
@@ -91,7 +91,7 @@ Una vez borrados los contenedores, sigue los pasos descritos en el apartado ante
 Tenéis además un script en python a vuestra disposición para borrar los datos por defecto y generar nuevos datos. Para ejecutar este script tenéis que instalar las dependencias de la siguiente forma:
 
 ```
-cd server-docker/db
+cd ipm2122-server/db
 pip3 install -r requirements.txt
 ```
 
