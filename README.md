@@ -1,4 +1,6 @@
-# Instalación y ejecución en debian/ubuntu
+# Instalación de Docker
+
+## debian/ubuntu
 
 - [ ] Instala docker (como superusuario)
 
@@ -33,7 +35,42 @@ Deberá salir por pantalla información sobre la versión actualmente instalada.
 > groups
 > ```
 > Si el grupo docker no aparece en la lista, prueba a salir de la sesión y volver a entrar o a reiniciar el ordenador.
->
+
+
+
+## Windows 10
+
+- [ ] Descarga e instala git
+
+- [ ] Descarga e instala Docker desktop for Windows. Abre el programa.
+
+- [ ] > Docker depende del subsistema de Windows para Linux (WSL). Es posible que tengas que instalar o actualizar este paquete durante la instalación de docker. Revisa los mensajes que aparecen durante la instalación/ejecución de docker. 
+  >
+  > También es posible que tengas que reiniciar Windows tras las instalación de docker.
+
+- [ ] Abre un terminal del sistema, Powershell o git-bash y prueba si docker se está ejecutando con
+
+  ```
+  C:\Users\User> docker version
+  ```
+
+
+
+## osX
+
+- [ ] Descarga e instala Docker for Mac. Abre el programa.
+
+- [ ] Abre un terminal y prueba si docker se está ejecutando con 
+
+  ```
+  $ docker version
+  ```
+
+
+
+# Instalación y ejecución del servidor
+
+- [ ] Abre un terminal (command line/powershell/git-bash en Windows  o terminal del sistema en osX/Linux)
 
 - [ ] Descarga los ficheros de configuración del servidor [usuario normal]
 
@@ -54,13 +91,13 @@ Asegúrate que la última línea que aparece en el log es:
 db_ipm2122        | 2021-09-08 14:51:11.887 UTC [1] LOG:  database system is ready to accept connections 
 ```
 
-- [ ] Abre otro terminal y arranca el motor graphql (usuario normal)
+- [ ] Abre otro terminal, sitúate en el directorio ipm2122-server y arranca el motor graphql (usuario normal)
 
 ```
 docker-compose up graphql-engine
 ```
 
-- [ ]  Prueba el API REST (usuario normal) con curl, por ejemplo:
+- [ ] Prueba el API REST (usuario normal) con curl, por ejemplo:
 
 ```
 curl  -H "x-hasura-admin-secret:myadminsecretkey" "http://localhost:8080/api/rest/facilities" 
@@ -69,8 +106,6 @@ curl  -H "x-hasura-admin-secret:myadminsecretkey" "http://localhost:8080/api/res
 Deberías recibir un fichero JSON con los edificios almacenados en la base de datos.
 
 Para detener la ejecución de los contenedores docker, pulsa Control+C en el terminal correspondiente
-
-------
 
 ## Regeneración de la base de datos [opcional]
 
@@ -112,3 +147,4 @@ El script se ejecuta de la siguiente forma:
 python3 generate_data.py
 ```
 
+I
