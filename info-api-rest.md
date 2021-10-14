@@ -264,7 +264,7 @@ curl  -H "x-hasura-admin-secret:myadminsecretkey" "http://localhost:8080/api/res
 
 ```
 
-Ejemplo en Dart:
+Ejemplo en Dart (usando paquetes http y dart:convert):
 ```dart
 
  var data = {
