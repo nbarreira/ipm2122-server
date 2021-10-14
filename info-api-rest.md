@@ -264,3 +264,23 @@ curl  -H "x-hasura-admin-secret:myadminsecretkey" "http://localhost:8080/api/res
 
 ```
 
+Ejemplo en Dart:
+```dart
+
+ var data = {
+      "user_id": "cb8e3ff9-2c7c-452d-9828-37ab4a6eb660",
+      "facility_id": 130,
+      "timestamp": "2021-10-14T18:58:00+00:00",
+      "type": "IN",
+      "temperature": "35.5"
+    };
+
+var url = Uri.parse("http://localhost:8080/api/rest/access_log");
+var response = await http.post(
+      url,
+      headers: {
+        "x-hasura-admin-secret": "myadminsecretkey",
+      },
+      body: json.encode(data),
+);
+```
